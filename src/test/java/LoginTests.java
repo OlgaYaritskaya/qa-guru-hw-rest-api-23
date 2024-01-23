@@ -1,3 +1,4 @@
+import io.qameta.allure.*;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
@@ -6,6 +7,10 @@ import static org.hamcrest.Matchers.is;
 
 public class LoginTests {
     @Test
+    @Feature("Authorization")
+    @Story("Negative tests")
+    @Owner("yaritskayao")
+    @Severity(SeverityLevel.BLOCKER)
     void userNotFoundLoginTest() {
         String authData = "{\"email\":\"eva/holt@reqres.in\", \"password\":\"citvslicka\"}";
 
@@ -21,6 +26,10 @@ public class LoginTests {
                     .statusCode(400);
     }
     @Test
+    @Feature("Authorization")
+    @Story("Successfull authorization")
+    @Owner("yaritskayao")
+    @Severity(SeverityLevel.BLOCKER)
     void successfulLoginTest() {
         String authData = "{\"email\":\"eve.holt@reqres.in\", \"password\":\"cityslicka\"}";
 
