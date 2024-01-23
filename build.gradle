@@ -1,37 +1,14 @@
 plugins {
     id 'java-library'
-    id 'io.qameta.allure' version "2.9.6"
 }
 
 repositories {
     mavenCentral()
 }
 
-def
-        allureVersion = "2.21.0",
-        selenideVersion = "6.19.1"
-
-allure {
-    report {
-        version.set(allureVersion) //версия Allure Report (https://github.com/allure-framework/allure2)
-    }
-    adapter {
-        aspectjWeaver.set(true) // обработка аннотации @Step
-        frameworks {
-            junit5 {
-                adapterVersion.set(allureVersion)
-                //версия Allure JUnit5 (https://github.com/allure-framework/allure-java)
-            }
-        }
-    }
-}
-
 dependencies {
     testImplementation(
-            "com.codeborne:selenide:$selenideVersion",
-            "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:5.10.0",
-            "com.github.javafaker:javafaker:1.0.2",
             "org.slf4j:slf4j-simple:2.0.9"
     )
 }
@@ -44,12 +21,6 @@ tasks.withType(Test) {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
-    }
-}
-
-task web_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("Web")
     }
 }
 
